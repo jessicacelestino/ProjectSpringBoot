@@ -3,8 +3,8 @@ spring:
     name: lanchinho
   datasource:
     username: root
-    password: 123456
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/lanchinho?serverTimezone=America/Sao_Paulo
+    password: VFCvfc
+    url: jdbc:mysql://localhost:3306/lanchinho?serverTimezone=America/Sao_Paulo
   jpa:
     show-sql: true
     properties:

@@ -1,44 +1,31 @@
 package br.com.jessica.meu_lanchinho.controller;
 
 import br.com.jessica.meu_lanchinho.model.Ingrediente;
-import br.com.jessica.meu_lanchinho.services.IngredienteServices;
+import br.com.jessica.meu_lanchinho.services.IngredienteService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/ingredientes")
 public class IngredienteController {
-    private final IngredienteServices ingredienteServices;
+    private final IngredienteService ingredienteService;
 
-    public IngredienteController(IngredienteServices ingredienteServices){
-        this.ingredienteServices = ingredienteServices;
-    }
-
-    @PostMapping
-    public ResponseEntity < Ingrediente > post(@Valid @RequestBody Ingrediente ingrediente){
-        return ingredienteServices.post(ingrediente);
+    public IngredienteController(IngredienteService ingredienteService){
+        this.ingredienteService = ingredienteService;
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity < Ingrediente > get (@PathVariable Long id) {
-        return ingredienteServices.get(id);
+    public ResponseEntity < Ingrediente > get (@PathVariable Integer id) {
+        return ingredienteService.get(id);
     }
 
     @GetMapping
-    public ResponseEntity <List <Ingrediente >> getall() {
-        return ingredienteServices.get();
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity < Ingrediente > put (@Valid @RequestBody Ingrediente ingrediente, @PathVariable Long id) {
-        return ingredienteServices.put(ingrediente, id);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity < Ingrediente > delete (@PathVariable Long id) {
-        return ingredienteServices.delete(id);
+    public ResponseEntity <List <Ingrediente >> getAll() {
+        return ingredienteService.get();
     }
 }

@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Arrays;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -18,7 +20,12 @@ public class Lanche {
     @NotNull
     @Basic(optional = false)
     private String nomeLanche;
-    @NotNull
-    @Basic(optional = false)
-    private String  ingrediente;
+    @ManyToMany
+    private List<Ingrediente> ingrediente;
+
+    public Lanche(String nomeLanche, Ingrediente... ingrediente){
+        this.nomeLanche = nomeLanche;
+        this.ingrediente = Arrays.asList(ingrediente);
+    }
+
 }
